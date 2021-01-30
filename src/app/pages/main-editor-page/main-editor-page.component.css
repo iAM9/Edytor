@@ -1,6 +1,8 @@
 .example-container {
     width: 100%;
     height: 100%;
-    margin: 0px;
   }
-  
+
+.text-editor{
+    padding: 50px;
+}
