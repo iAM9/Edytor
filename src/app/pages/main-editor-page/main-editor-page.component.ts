@@ -12,4 +12,8 @@ export class MainEditorPageComponent implements OnInit {
   ngOnInit() {
   }
 
+  textChange(text) {
+    console.log('any: ', text);
+  }
+
 }
