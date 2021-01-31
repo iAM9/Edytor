@@ -14,4 +14,41 @@ textarea {
     width: 100%;
     height: 100%;
     font-family: 'DM Mono', monospace;
+    font-size: 20px;
+    padding-left: 250px;
+    padding-right: 250px;
+    box-sizing: border-box;
+    resize: none;
+    background-color: #2d2d2b;
+    color: #f6f5f0e0;
+    line-height: 35px;
+    border: #2d2d2b;
+    scrollbar-color: #f6f5f043 #2d2d2b;
+    scrollbar-width: thin;
 }
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #2d2d2b; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #f6f5f020; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+
+textarea::selection {
+    background: slategray; /* WebKit/Blink Browsers */
+  }
+textarea::-moz-selection {
+    background: slategray; /* Gecko Browsers */
+  }
