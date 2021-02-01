@@ -5,7 +5,7 @@ import { MainEditorPageComponent } from './main-editor-page/main-editor-page.com
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { TextEditorComponent } from './main-editor-page/components/text-editor/text-editor.component';
 import { MatInputModule } from '@angular/material/input';
-import { MatTabsModule } from '@angular/material';
+import { MatButtonModule, MatFormFieldModule, MatIconModule, MatSelectModule, MatTabsModule } from '@angular/material';
 
 
 @NgModule({
@@ -16,7 +16,11 @@ import { MatTabsModule } from '@angular/material';
   imports: [
       MatSidenavModule,
       MatInputModule,
-      MatTabsModule
+      MatTabsModule,
+      MatButtonModule,
+      MatIconModule,
+      MatSelectModule,
+      MatFormFieldModule
   ],
 })
 export class PagesModule { }

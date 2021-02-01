@@ -1,6 +1,8 @@
 <!-- <p>main-editor-page works!</p> -->
 <mat-drawer-container class="example-container">
-    <mat-drawer mode="side" opened>Drawer cccccontent</mat-drawer>
+    <mat-drawer mode="side" opened>
+        <mat-icon>list</mat-icon>
+    </mat-drawer>
     <mat-drawer-content class="contents">
         <app-text-editor
             (textChange)="textChange($event)">

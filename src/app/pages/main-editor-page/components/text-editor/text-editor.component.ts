@@ -13,12 +13,12 @@ export class TextEditorComponent {
 
   @Output() textChange = new EventEmitter<string>();
 
-  constructor() {
-    // const editor = document.querySelector('textarea');
-    // indentation.watch(editor);
-  }
+  constructor() { }
 
-
+  /**
+   * Event handler for detecting changes in the text
+   * @param text 
+   */
   textChangeEvent(text: any) {
     console.log('Text: ', text);
     this.textChange.emit(text.data);
@@ -26,6 +26,20 @@ export class TextEditorComponent {
   
   }
 
+  /**
+   * Handles formatting of the contentEditable div
+   * @param command The format command
+   * @param value The value for the command
+   */
+  format(command, value?) {
+    console.log('command: ', command);
+    document.execCommand(command, false, value);
+  }
+
+  /**
+   * Handle tabbing of text in the editor
+   * @param e 
+   */
   textTab(e) {
     const editor = document.querySelector('textarea');
     if (e.key === 'Tab') {
@@ -34,7 +48,6 @@ export class TextEditorComponent {
       } else {
         indentation.indent(editor);
       }
-  
       e.preventDefault();
     }
   }
