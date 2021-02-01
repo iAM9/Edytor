@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import * as indentation from 'indent-textarea';
+import { isNumber } from 'util';
 
 @Component({
   selector: 'app-text-editor',
@@ -23,7 +24,6 @@ export class TextEditorComponent {
     console.log('Text: ', text);
     this.textChange.emit(text.data);
     console.log('Textarea: ', (<HTMLInputElement>document.getElementById("editor")).value);
-  
   }
 
   /**
@@ -33,7 +33,20 @@ export class TextEditorComponent {
    */
   format(command, value?) {
     console.log('command: ', command);
+    console.log('value: ', value);
     document.execCommand(command, false, value);
+  }
+
+  selectFont(e) {
+    console.log('Select: ', e);
+    const selection = (<HTMLInputElement>document.getElementById("font-style-select")).value;
+    this.format('fontname', selection);
+  }
+
+  selectSize(e) {
+    console.log('Select: ', e);
+    const selection = (<HTMLInputElement>document.getElementById("font-size-select")).value;
+    this.format('fontsize', selection);
   }
 
   /**

@@ -25,25 +25,27 @@
             <span>
                 <mat-form-field appearance="outline" [style.width.px]=100>
                     <mat-label>Font</mat-label>
-                    <mat-select (click)="select($event)" (selectionChange)="format('fontname', $event.value)">
-                        <mat-option value="Arial"><span
-                                style="font-family: Arial, Helvetica, sans-serif">Arial</span></mat-option>
-                        <mat-option value="Courier New"><span
-                                style="font-family: 'Courier New', Courier, monospace">Courier New</span></mat-option>
-                        <mat-option value="Times New Roman"><span
+                    <select id="font-style-select" matNativeControl (change)="selectFont($event)">
+                        <option value="" selected></option>
+                        <option value="Arial"><span style="font-family: Arial, Helvetica, sans-serif">Arial</span>
+                        </option>
+                        <option value="Courier New"><span style="font-family: 'Courier New', Courier, monospace">Courier
+                                New</span></option>
+                        <option value="Times New Roman"><span
                                 style="font-family: 'Times New Roman', Times, serif;">Times New Roman</span>
-                        </mat-option>
-                    </mat-select>
+                        </option>
+                    </select>
                 </mat-form-field>
             </span>
             <span>
-                <mat-form-field appearance="outline" [style.width.px]=80>
+                <mat-form-field appearance="outline" [style.width.px]=92>
                     <mat-label>Size</mat-label>
-                    <mat-select (selectionChange)="format('fontsize', $event.value)">
-                        <mat-option value="10">10px</mat-option>
-                        <mat-option value="20">20px</mat-option>
-                        <mat-option value="40">40px</mat-option>
-                    </mat-select>
+                    <select id="font-size-select" matNativeControl (change)="selectSize($event)">
+                        <option value="" selected></option>
+                        <option value="3">Small</option>
+                        <option value="4">Regular</option>
+                        <option value="5">Large</option>
+                    </select>
                 </mat-form-field>
             </span>
         </div>
