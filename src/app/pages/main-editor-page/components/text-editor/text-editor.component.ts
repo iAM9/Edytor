@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { MatDialog } from '@angular/material';
 import * as indentation from 'indent-textarea';
-import { isNumber } from 'util';
 
 @Component({
   selector: 'app-text-editor',
@@ -14,7 +14,7 @@ export class TextEditorComponent {
 
   @Output() textChange = new EventEmitter<string>();
 
-  constructor() { }
+  constructor(private _dialog: MatDialog) { }
 
   /**
    * Event handler for detecting changes in the text
@@ -49,6 +49,22 @@ export class TextEditorComponent {
     this.format('fontsize', selection);
   }
 
+  createLink(event) {
+    const link = window.prompt('Target Url');
+    // const dialogRef = this._dialog.open(HyperlinkDialogComponent, {
+    //   width: '250px',
+    //   height: '280px',
+    //   data: {
+    //     string: window.getSelection().toString()
+    //   }
+    // });
+    // // console.log('Event: ', event);
+    // dialogRef.afterClosed().subscribe(link => {
+      // console.log('LINK: ', link);
+    this.format('createlink', link)
+    // })
+  }
+
   /**
    * Handle tabbing of text in the editor
    * @param e 
@@ -66,3 +82,4 @@ export class TextEditorComponent {
   }
 
 }
+

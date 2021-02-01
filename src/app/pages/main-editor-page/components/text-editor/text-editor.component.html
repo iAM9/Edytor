@@ -4,50 +4,93 @@
 <div class="editor">
     <div class="toolbar">
         <div>
-            <button (click)="format('bold')" mat-icon-button
-                aria-label="Example icon button with a vertical three dot icon">
+            <button (click)="format('bold')" mat-icon-button>
                 <mat-icon>format_bold</mat-icon>
             </button>
-            <button (click)="format('italic')" mat-icon-button aria-label="Example icon button with a home icon">
+            <button (click)="format('italic')" mat-icon-button>
                 <mat-icon>format_italic</mat-icon>
             </button>
-            <button (click)="format('underlined')" mat-icon-button aria-label="Example icon button with a menu icon">
+            <button (click)="format('underline')" mat-icon-button>
                 <mat-icon>format_underlined</mat-icon>
-            </button>
-            <button mat-icon-button color="accent" aria-label="Example icon button with a heart icon">
-                <mat-icon>segment</mat-icon>
-            </button>
-            <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
-                <mat-icon>picture_as_pdf</mat-icon>
             </button>
         </div>
         <div>
-            <span>
-                <mat-form-field appearance="outline" [style.width.px]=100>
-                    <mat-label>Font</mat-label>
-                    <select id="font-style-select" matNativeControl (change)="selectFont($event)">
-                        <option value="" selected></option>
-                        <option value="Arial"><span style="font-family: Arial, Helvetica, sans-serif">Arial</span>
-                        </option>
-                        <option value="Courier New"><span style="font-family: 'Courier New', Courier, monospace">Courier
-                                New</span></option>
-                        <option value="Times New Roman"><span
-                                style="font-family: 'Times New Roman', Times, serif;">Times New Roman</span>
-                        </option>
-                    </select>
-                </mat-form-field>
+            <button (click)="format('justifyleft')" mat-icon-button style="color: slategray;">
+                <mat-icon>
+                    format_align_left</mat-icon>
+            </button>
+            <button (click)="format('justifycenter')" mat-icon-button style="color: slategray;">
+                <mat-icon>
+                    format_align_center</mat-icon>
+            </button>
+            <button (click)="format('justifyright')" mat-icon-button style="color: slategray;">
+                <mat-icon>format_align_right</mat-icon>
+            </button>
+        </div>
+        <div>
+            <div style="margin-left: 1px;margin-bottom: 5px;">
+                <!-- <select id="font-style-select" (change)="selectFont($event)" style="height: 30px;width: 100px;">
+                    <option selected style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Font -</option>
+                    <option value="Arial"><span style="font-family: Arial, Helvetica, sans-serif">Arial</span>
+                    </option>
+                    <option value="Courier New"><span style="font-family: 'Courier New', Courier, monospace">Courier
+                            New</span></option>
+                    <option value="Times New Roman"><span style="font-family: 'Times New Roman', Times, serif;">Times
+                            New Roman</span>
+                    </option>
+                </select> -->
+                <button mat-icon-button [matMenuTriggerFor]="menuFont" >
+                    <mat-icon>format_shapes</mat-icon>
+                </button>
+                <mat-menu #menuFont="matMenu">
+                    <button mat-menu-item (click)="format('fontname', $event.srcElement.innerText)">
+                        <span style="font-family: Arial, Helvetica, sans-serif">Arial</span>
+                    </button>
+                    <button mat-menu-item (click)="format('fontname', $event.srcElement.innerText)">
+                        <span style="font-family: 'Times New Roman', Times, serif;">Times New Roman</span>
+                    </button>
+                    <button mat-menu-item (click)="format('fontname', $event.srcElement.innerText)">
+                        <span style="font-family: 'Courier New', Courier, monospace">Courier New</span>
+                    </button>
+                </mat-menu>
+                <button mat-icon-button [matMenuTriggerFor]="menuFontColor" >
+                    <mat-icon style="color: darkorange;">format_color_text</mat-icon>
+                </button>
+                <mat-menu #menuFontColor="matMenu">
+                    <button mat-menu-item (click)="format('forecolor', 'darkorange')">
+                        <div class="square" style="background-color: darkorange;"></div>
+                    </button>
+                    <button mat-menu-item (click)="format('forecolor', 'darkcyan')">
+                        <div class="square" style="background-color: darkcyan;"></div>
+                    </button>
+                    <button mat-menu-item (click)="format('forecolor', 'dodgerblue')">
+                        <div class="square" style="background-color: dodgerblue;"></div>
+                    </button>
+                </mat-menu>
+                <button mat-icon-button (click)="createLink($event)">
+                    <mat-icon style="color: dodgerblue;">insert_link</mat-icon>
+                </button>
+            </div>
+            <!-- <span style="margin-left: 10px;">
+                <select name="size" id="font-size-select" (change)="selectSize($event)"
+                    style="height: 30px;width: 50px;">
+                    <option selected>Size -</option>
+                    <option value="3">Small</option>
+                    <option value="4">Regular</option>
+                    <option value="5">Large</option>
+                </select>
             </span>
-            <span>
-                <mat-form-field appearance="outline" [style.width.px]=92>
-                    <mat-label>Size</mat-label>
-                    <select id="font-size-select" matNativeControl (change)="selectSize($event)">
-                        <option value="" selected></option>
-                        <option value="3">Small</option>
-                        <option value="4">Regular</option>
-                        <option value="5">Large</option>
-                    </select>
-                </mat-form-field>
-            </span>
+            <span style="margin-left: 8px;">
+                <select name="size" id="font-size-select" (change)="selectSize($event)"
+                    style="height: 30px;width: 40px;">
+                    <option>
+                        <mat-icon>format_color_text</mat-icon>
+                    </option>
+                    <option value="3">Small</option>
+                    <option value="4">Regular</option>
+                    <option value="5">Large</option>
+                </select>
+            </span> -->
         </div>
     </div>
     <div id="editor" contenteditable="true" (input)="textChangeEvent($event)" (keydown)="textTab($event)">

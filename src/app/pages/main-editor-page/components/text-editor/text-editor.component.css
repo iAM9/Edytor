@@ -18,7 +18,7 @@
   -moz-transition: opacity 0.2s ease-in-out;
 }
 .toolbar:hover {
-  opacity: 1;
+  opacity: 0.8;
   transition: opacity 0.2s ease-in-out;
   -webkit-transition: opacity 0.2s ease-in-out;
   -moz-transition: opacity 0.2s ease-in-out;
@@ -36,11 +36,47 @@
   resize: none;
   background-color: #2d2d2b;
   color: #f6f5f0e0;
-  line-height: 25px;
+  line-height: 27px;
   border: #2d2d2b;
   overflow: auto;
   scrollbar-color: #f6f5f043 #2d2d2b;
   scrollbar-width: thin;
+}
+
+[contenteditable="true"] {
+  background-color: grey;
+
+  a:link {
+    color: green;
+    background-color: transparent;
+    text-decoration: none;
+  }
+  a:visited {
+    color: pink;
+    background-color: transparent;
+    text-decoration: none;
+  }
+  a:hover {
+    color: red;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  a:active {
+    color: yellow;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+}
+
+
+
+.square {
+  height: 22px;
+}
+
+select {
+  background-color: #2d2d2b;
+  color: #f6f5f0e0;
 }
 
 textarea {
@@ -54,7 +90,7 @@ textarea {
     resize: none;
     background-color: #2d2d2b;
     color: #f6f5f0e0;
-    line-height: 35px;
+    line-height: 27px;
     border: #2d2d2b;
     scrollbar-color: #f6f5f043 #2d2d2b;
     scrollbar-width: thin;
