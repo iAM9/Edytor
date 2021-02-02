@@ -1,11 +1,17 @@
-<!-- <p>main-editor-page works!</p> -->
-<mat-drawer-container class="example-container">
-    <mat-drawer mode="side" opened>
+<mat-sidenav-container class="example-container">
+
+    <mat-sidenav  #sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')"
+    (closed)="events.push('close!')">
         <mat-icon>list</mat-icon>
-    </mat-drawer>
-    <mat-drawer-content class="contents">
+        <mat-icon>list</mat-icon>
+        <mat-icon>list</mat-icon>
+    </mat-sidenav>
+    <mat-sidenav-content class="contents">
+        <button mat-mini-fab color="accent" (click)="sidenav.toggle()" class="editor-toggle">
+            <mat-icon>wysiwyg</mat-icon>
+        </button>
         <app-text-editor
             (textChange)="textChange($event)">
         </app-text-editor>
-    </mat-drawer-content>
-</mat-drawer-container>
+    </mat-sidenav-content>
+</mat-sidenav-container>

@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainEditorPageComponent implements OnInit {
 
+  events: string[] = [];
+  opened: boolean;
+
   constructor() { }
 
   ngOnInit() {
