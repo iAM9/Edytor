@@ -973,6 +973,13 @@
     tree-kill "1.2.2"
     webpack-sources "1.4.3"
 
+"@ngx-pwa/local-storage@^8.2.4":
+  version "8.2.4"
+  resolved "https://registry.yarnpkg.com/@ngx-pwa/local-storage/-/local-storage-8.2.4.tgz#787a2d55e87eb5273a958fc8e57048fb4ddf2176"
+  integrity sha512-fvcUYa2ckT3SpOdvE5sSOSHPFuXfjQcJclV2GLJdIfYGukOIYaI6Hlp1QBVyYf6lYk9/SunNeOMUgEA2Zw7PIw==
+  dependencies:
+    tslib "^1.9.0"
+
 "@nodelib/fs.scandir@2.1.4":
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.scandir/-/fs.scandir-2.1.4.tgz#d4b3549a5db5de2683e0c1071ab4f140904bbf69"
@@ -4010,6 +4017,13 @@ indent-string@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/indent-string/-/indent-string-4.0.0.tgz#624f8f4497d619b2d9768531d58f4122854d7251"
   integrity sha512-EdDDZu4A2OyIK7Lr/2zG+w5jmbuk1DVBnEwREQvBzspBJkCEbRa8GxU1lghYcaGJCnRWibjDXlq779X1/y5xwg==
+
+indent-textarea@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/indent-textarea/-/indent-textarea-2.0.3.tgz#1273b910a3a85368baff2d3a0d344a464abc69e4"
+  integrity sha512-owZU0hszuLnP8QNzirfJBrxAdcLE3R0QkIcRqNzaQPj5OgAUU2XARa5xPwFLfKULmEDkByPC9aCbuPG2grgbtA==
+  dependencies:
+    text-field-edit "^3.1.0"
 
 indexof@0.0.1:
   version "0.0.1"
@@ -7442,6 +7456,11 @@ terser@^4.1.2, terser@^4.6.13:
     commander "^2.20.0"
     source-map "~0.6.1"
     source-map-support "~0.5.12"
+
+text-field-edit@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/text-field-edit/-/text-field-edit-3.1.0.tgz#f02ea723192f1e164c437b9b6fec296ea89eaddc"
+  integrity sha512-4mVLiSRR5/p0Zhdl8QkjkUeYUDMSQSYdKsEgR6uOySjcc6QB/O2hzuUlxepL2kQQL0NrpYiI6Ywj6TZULYI9/w==
 
 through2@^2.0.0:
   version "2.0.5"

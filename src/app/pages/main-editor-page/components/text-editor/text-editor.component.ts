@@ -23,7 +23,8 @@ export class TextEditorComponent {
   textChangeEvent(text: any) {
     console.log('Text: ', text);
     this.textChange.emit(text.data);
-    console.log('Textarea: ', (<HTMLInputElement>document.getElementById("editor")).value);
+    console.log('Textarea: ', (document.getElementById("editor")).innerHTML);
+
   }
 
   /**

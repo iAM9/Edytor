@@ -10,6 +10,14 @@
         <button mat-mini-fab color="accent" (click)="sidenav.toggle()" class="editor-toggle">
             <mat-icon>wysiwyg</mat-icon>
         </button>
+        <div class="status-area">
+            <div *ngIf="isSaving"  style="opacity: 0.2;">
+                <mat-spinner color="accent" [diameter]="30"></mat-spinner>
+            </div>
+            <div *ngIf="isSaved" style="opacity: 0.3;">
+                Saved {{this.elapsedTime}} ago
+            </div>
+        </div>
         <app-text-editor
             (textChange)="textChange($event)">
         </app-text-editor>
