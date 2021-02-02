@@ -41,9 +41,10 @@
   overflow: auto;
   scrollbar-color: #f6f5f043 #2d2d2b;
   scrollbar-width: thin;
+  white-space: pre-wrap;
 }
 
-[contenteditable="true"] {
+/* [contenteditable="true"] {
   background-color: grey;
 
   a:link {
@@ -66,7 +67,7 @@
     background-color: transparent;
     text-decoration: underline;
   }
-}
+} */
 
 
 

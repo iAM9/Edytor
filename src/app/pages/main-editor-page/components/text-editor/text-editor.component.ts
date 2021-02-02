@@ -50,7 +50,7 @@ export class TextEditorComponent {
   }
 
   createLink(event) {
-    const link = window.prompt('Target Url');
+    let link = window.prompt('Target Url');
     // const dialogRef = this._dialog.open(HyperlinkDialogComponent, {
     //   width: '250px',
     //   height: '280px',
@@ -61,24 +61,37 @@ export class TextEditorComponent {
     // // console.log('Event: ', event);
     // dialogRef.afterClosed().subscribe(link => {
       // console.log('LINK: ', link);
+      if (!link.startsWith('http')) {
+        link = 'https://'+ link;
+      }
     this.format('createlink', link)
     // })
   }
 
   /**
    * Handle tabbing of text in the editor
-   * @param e 
+   * @param e The keydown event
    */
   textTab(e) {
-    const editor = document.querySelector('textarea');
-    if (e.key === 'Tab') {
-      if (e.shiftKey) {
-        indentation.unindent(editor);
-      } else {
-        indentation.indent(editor);
+      if(e.key === 'Tab') {
+        // e.preventDefault();
+        document.execCommand('insertHTML', false, '&#009');
+        //prevent focusing on next element
+        e.preventDefault() 
       }
-      e.preventDefault();
-    }
+    
+    // e.preventDefault();
+
+    // const editor = document.querySelector('textarea');
+    // if (e.key === 'Tab') {
+    //   console.log('key pressed: ', e.key);
+    //   if (e.shiftKey) {
+    //     indentation.unindent(editor);
+    //   } else {
+    //     indentation.indent(editor);
+    //   }
+    //   e.preventDefault();
+    // }
   }
 
 }
