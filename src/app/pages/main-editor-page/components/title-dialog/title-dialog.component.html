@@ -1,19 +1,19 @@
-<h1 mat-dialog-title>Create Hyperlink</h1>
+<h1 mat-dialog-title>Edit Document Title</h1>
 <div mat-dialog-content>
   <div>
     <mat-form-field>
-      <mat-label>Selected text</mat-label>
-      <input matInput [(ngModel)]="data.string" disabled>
+      <mat-label>Current Title</mat-label>
+      <input matInput [(ngModel)]="data.title" disabled>
     </mat-form-field>
   </div>
   <div>
     <mat-form-field>
-      <mat-label>Target URL</mat-label>
+      <mat-label>New Title</mat-label>
       <input matInput [(ngModel)]="value" cdkFocusInitial>
     </mat-form-field>
   </div>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="cancel()">Cancel</button>
-  <button mat-button [mat-dialog-close]="value">Create</button>
+  <button mat-button [mat-dialog-close]="value">Update</button>
 </div>

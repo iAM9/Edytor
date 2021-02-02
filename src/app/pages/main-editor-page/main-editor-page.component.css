@@ -7,14 +7,46 @@
     overflow: unset;
 }
 
-.editor-toggle {
-  position: absolute;
+.sidenav-toggle {
   z-index: 10;
-  left: 10px;
+  left: -20px;
+  top: 37%;
+  position: absolute;
+  opacity: 0.1;
+  transition: opacity 0.2s ease-in-out;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  -moz-transition: opacity 0.2s ease-in-out;
 }
+
+.sidenav-toggle:hover {
+  opacity: 0.8;
+  transition: opacity 0.2s ease-in-out;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  -moz-transition: opacity 0.2s ease-in-out;
+}  
 
 .status-area {
   position: absolute;
   bottom: 5px;
   left: 10px;
+}
+
+.doc-list {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 50px;
+}
+
+.doc-item {
+  padding-bottom: 20px;
+  text-align: end;
+  text-align: -webkit-right;
+}
+
+.add-doc {
+  text-align: center;
+  text-align: -webkit-center;
+  position: absolute;
+  left: 65px;
+  bottom: 20px;
 }

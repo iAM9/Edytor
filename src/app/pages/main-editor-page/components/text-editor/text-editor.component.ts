@@ -1,6 +1,8 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import * as indentation from 'indent-textarea';
+import { TextDocument } from 'src/app/interfaces/document';
+import { TitleDialogComponent } from '../title-dialog/title-dialog.component';
 
 @Component({
   selector: 'app-text-editor',
@@ -12,9 +14,17 @@ import * as indentation from 'indent-textarea';
 
 export class TextEditorComponent {
 
+  _currentString: TextDocument;
+
+  @Input() currentTextDocument: TextDocument;
+  @Input() currentTitle: string;
+  @Input() currentText: string;
+
   @Output() textChange = new EventEmitter<string>();
 
-  constructor(private _dialog: MatDialog) { }
+  @Output() titleChange = new EventEmitter<string>();
+
+  constructor(private _dialog: MatDialog) {  }
 
   /**
    * Event handler for detecting changes in the text
@@ -22,9 +32,24 @@ export class TextEditorComponent {
    */
   textChangeEvent(text: any) {
     console.log('Text: ', text);
-    this.textChange.emit(text.data);
+    // this.textChange.emit(text.data);
     console.log('Textarea: ', (document.getElementById("editor")).innerHTML);
+    this.textChange.emit(document.getElementById("editor").innerHTML);
+  }
 
+  editName(docTitle) {
+    console.log('DocTitle: ', docTitle);
+    const dialogRef = this._dialog.open(TitleDialogComponent, {
+      width: '250px',
+      data: {
+        title: docTitle
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(newTitle => {
+      console.log('newTitle: ', newTitle);
+      this.titleChange.emit(newTitle);
+    })
   }
 
   /**
