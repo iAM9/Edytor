@@ -34,10 +34,10 @@
             <mat-icon>menu</mat-icon>
         </button>
         <div class="status-area">
-            <div *ngIf="isSaving" style="opacity: 0.2;">
+            <div *ngIf="isSaving">
                 <mat-spinner color="accent" [diameter]="30"></mat-spinner>
             </div>
-            <div *ngIf="!isSaving" style="opacity: 0.1;">
+            <div *ngIf="!isSaving">
                 Last saved: {{this.currentTextDocument?.updatedAt}}
             </div>
         </div>

@@ -29,6 +29,19 @@
   position: absolute;
   bottom: 5px;
   left: 10px;
+  opacity: 0.1;
+  font-size: small;
+  font-family: 'DM Mono', monospace;
+  transition: opacity 0.2s ease-in-out;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  -moz-transition: opacity 0.2s ease-in-out;
+}
+
+.status-area:hover {
+  opacity: 0.8;
+  transition: opacity 0.2s ease-in-out;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  -moz-transition: opacity 0.2s ease-in-out;
 }
 
 .doc-list {
