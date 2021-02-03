@@ -40,7 +40,6 @@ export class TextEditorComponent {
   editName(docTitle) {
     console.log('DocTitle: ', docTitle);
     const dialogRef = this._dialog.open(TitleDialogComponent, {
-      width: '250px',
       data: {
         title: docTitle
       }

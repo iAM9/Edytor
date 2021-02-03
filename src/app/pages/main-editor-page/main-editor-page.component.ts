@@ -27,6 +27,16 @@ export class MainEditorPageComponent implements OnInit {
   currentTitle = '';
   currentText = '';
 
+  placeHolderText = `
+    <div style="opacity:0.5;font-style:italic;">
+      <div>Welcome to Editron!</div>
+      <br>
+      <div>A simple to use rich-text editor</div>
+      <br>
+      <div>For optimal experience, you can go fullscreen by pressing the F11 key on your keyboard</div>
+    </div>
+    `;
+
   textDocumentList: TextDocument[];
   currentTextDocument: TextDocument;
 
@@ -45,7 +55,7 @@ export class MainEditorPageComponent implements OnInit {
       let textDocument: TextDocument = {
         id: id,
         title: 'doc-' + id.substring(0,6),
-        text: '',
+        text: this.placeHolderText,
         updatedAt: ''
       }
       this.currentText = '';
@@ -118,7 +128,7 @@ export class MainEditorPageComponent implements OnInit {
     let newTextDocument: TextDocument = {
       id: id,
       title: 'doc-' + id.substring(0,6),
-      text: '',
+      text: this.placeHolderText,
       updatedAt: new Date().toString()
     }
     this.textDocumentList.push(newTextDocument);

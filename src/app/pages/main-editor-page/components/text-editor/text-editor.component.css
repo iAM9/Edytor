@@ -29,8 +29,8 @@
   height: 100%;
   font-family: 'DM Mono', monospace;
   font-size: 20px;
-  padding-left: 250px;
-  padding-right: 250px;
+  padding-left: 22vw;
+  padding-right: 26vw;
   padding-top: 50px;
   box-sizing: border-box;
   resize: none;
@@ -43,33 +43,6 @@
   scrollbar-width: thin;
   white-space: pre-wrap;
 }
-
-/* [contenteditable="true"] {
-  background-color: grey;
-
-  a:link {
-    color: green;
-    background-color: transparent;
-    text-decoration: none;
-  }
-  a:visited {
-    color: pink;
-    background-color: transparent;
-    text-decoration: none;
-  }
-  a:hover {
-    color: red;
-    background-color: transparent;
-    text-decoration: underline;
-  }
-  a:active {
-    color: yellow;
-    background-color: transparent;
-    text-decoration: underline;
-  }
-} */
-
-
 
 .square {
   height: 22px;

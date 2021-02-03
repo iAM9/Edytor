@@ -65,6 +65,14 @@
   bottom: 20px;
 }
 
+.switch-editor {
+  text-align: center;
+  text-align: -webkit-center;
+  position: absolute;
+  left: 165px;
+  bottom: 20px;
+}
+
 .heading{
   text-align: end;
   padding-right: 30px;

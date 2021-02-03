@@ -11,7 +11,7 @@
             <mat-list-item *ngFor="let doc of textDocumentList">
                 <div class="doc-item">
                     <div mat-line>
-                        <button mat-button color="accent" (click)="openDoc(doc)" style="width: 100%;text-align: start;">
+                        <button mat-button color="accent" (click)="openDoc(doc)" style="width: 100%;text-align: start;" [disabled]="isSaving">
                             <mat-icon>description</mat-icon>
                                 <span style="margin-left: 20px;">{{doc?.title}}</span>
                             <span mat-line style="font-size: 12px;font-style: italic;margin-left: 12px;">Updated at {{doc.updatedAt |
@@ -23,9 +23,16 @@
         </div>
         <div>
             <div>
-                <button mat-mini-fab color="accent" class="add-doc" (click)="createDoc()">
-                    <mat-icon>add</mat-icon>
-                </button>
+                <span>
+                    <button mat-mini-fab color="accent" class="add-doc" (click)="createDoc()" [disabled]="isSaving" matTooltip="Create New Document">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </span>
+                <span>
+                    <button mat-mini-fab color="accent" class="switch-editor" (click)="createDoc()" [disabled]="isSaving" matTooltip="Switch To Screenwriter">
+                        <mat-icon>wysiwyg</mat-icon>
+                    </button>
+                </span>
             </div>
         </div>
     </mat-sidenav>
