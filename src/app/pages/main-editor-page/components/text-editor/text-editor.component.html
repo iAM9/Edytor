@@ -4,12 +4,25 @@
 <div class="editor">
     <div class="toolbar">
         <div>
+            <button mat-button color="accent" 
+                style="width: 100%;
+                text-align: start;
+                padding-left: 10px;
+                padding-right: 0px;"
+                (click)="editName(this.currentTitle)">
+                <mat-icon>edit</mat-icon>
+                    <span style="margin-left: 10px;margin-right: 10px;">
+                        {{this.currentTitle}}
+                    </span>
+            </button>
+        </div>
+        <!-- <div>
             <div style="margin-left: 1px;margin-bottom: 5px;">
                 <div style="margin-top:10px;margin-left:11px;width:100px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;cursor: pointer;" (click)="editName(this.currentTitle)">
                     {{this.currentTitle}}
                 </div>
             </div>
-        </div>
+        </div> -->
         <div>
             <button (click)="format('bold')" mat-icon-button>
                 <mat-icon>format_bold</mat-icon>

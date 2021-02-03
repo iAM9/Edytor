@@ -39,8 +39,9 @@
 
 .doc-item {
   padding-bottom: 20px;
-  text-align: end;
-  text-align: -webkit-right;
+  text-align: left;
+  text-align: -webkit-left;
+  /* font-family: 'DM Mono', monospace; */
 }
 
 .add-doc {
@@ -49,4 +50,13 @@
   position: absolute;
   left: 65px;
   bottom: 20px;
+}
+
+.heading{
+  text-align: end;
+  padding-right: 30px;
+  padding-left: 30px;
+  font-size: x-large;
+  padding-top: 30px;
+  font-family: 'DM Mono', monospace;
 }

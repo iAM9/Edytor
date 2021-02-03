@@ -8,11 +8,6 @@ import { v4 as uuidv4 } from 'uuid';
 declare var require: any;
 const Elapsed = require('elapsed');
 
-export interface Section {
-  name: string;
-  updated: Date;
-}
-
 @Component({
   selector: 'app-main-editor-page',
   templateUrl: './main-editor-page.component.html',
@@ -40,9 +35,7 @@ export class MainEditorPageComponent implements OnInit {
     private _documentService: DocumentsService,
     private _storageService: LocalStorage
   ) {
-    // this.textDocumentList = {
-    //   documents: []
-    // };
+
     this.textDocumentList = [];
     this.textDocumentList = this._documentService.getDocuments();
     this.currentTextDocument = this._documentService.loadCurrentDoc();
@@ -51,7 +44,7 @@ export class MainEditorPageComponent implements OnInit {
       let id = uuidv4();
       let textDocument: TextDocument = {
         id: id,
-        title: 'Untitled-' + id.substring(0,),
+        title: 'doc-' + id.substring(0,6),
         text: '',
         updatedAt: ''
       }
@@ -76,7 +69,7 @@ export class MainEditorPageComponent implements OnInit {
   ngOnInit() { }
 
   /**
-   * 
+   * Event handler for changing the text of the document
    * @param text 
    */
   textChange(text) {
@@ -92,7 +85,8 @@ export class MainEditorPageComponent implements OnInit {
       this.currentTextDocument.text = text;
       this.currentTextDocument.updatedAt = new Date().toString();
       // this.currentText = text;
-      const elapsedTime = new Elapsed(this.currentTextDocument.updatedAt, new Date()).optimal;
+      const elapsedTime = new Elapsed(this.currentTextDocument.updatedAt, new Date());
+      console.log
       this.elapsedTime = elapsedTime.optimal;
       console.error('TIME PASSED: ', elapsedTime.optimal);
       console.log('This.currentTextDoc: ', this.currentTextDocument);
@@ -100,15 +94,47 @@ export class MainEditorPageComponent implements OnInit {
     }, 2000);
   }
 
+  /**
+   * Event handler for changing the title of the document
+   * @param title 
+   */
   titleChange(title: string) {
     this.currentTextDocument.title = title;
     this.currentTitle = title;
     this.currentTextDocument.updatedAt = new Date().toString();
-    const elapsedTime = new Elapsed(this.currentTextDocument.updatedAt, new Date()).optimal;
+    const elapsedTime = new Elapsed(this.currentTextDocument.updatedAt, new Date());
     this.elapsedTime = elapsedTime.optimal;
     console.error('TIME PASSED: ', elapsedTime.optimal);
     console.log('This.currentTextDoc: ', this.currentTextDocument);
     this._documentService.updateDoc(this.currentTextDocument);
+    this.textDocumentList = this._documentService.getDocuments();
+  }
+
+  /**
+   * Event handler for creating a new document
+   */
+  createDoc() {
+    let id = uuidv4();
+    let newTextDocument: TextDocument = {
+      id: id,
+      title: 'doc-' + id.substring(0,6),
+      text: '',
+      updatedAt: new Date().toString()
+    }
+    this.textDocumentList.push(newTextDocument);
+    localStorage.setItem('textDocumentList', JSON.stringify(this.textDocumentList));
+  }
+
+  /**
+   * Event handler for changing the current document
+   * @param doc The doc to be openend
+   */
+  openDoc(doc: TextDocument) {
+    console.log('Opening doc: ', doc);
+    localStorage.setItem('currentTextDocument', JSON.stringify(doc));
+    this.currentTextDocument = doc;
+    this.currentText = doc.text;
+    this.currentTitle = doc.title;
   }
 
 }

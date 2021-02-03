@@ -47,6 +47,9 @@ export class TextEditorComponent {
     });
 
     dialogRef.afterClosed().subscribe(newTitle => {
+      if(!newTitle) {
+        return;
+      }
       console.log('newTitle: ', newTitle);
       this.titleChange.emit(newTitle);
     })

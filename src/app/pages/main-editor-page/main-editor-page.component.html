@@ -1,23 +1,29 @@
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300&display=swap" rel="stylesheet">
+
 <mat-sidenav-container class="example-container">
     <mat-sidenav #sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')"
         (closed)="events.push('close!')">
+        <div class="heading">
+            Workspace Documents
+        </div>
         <div class="doc-list">
             <mat-list-item *ngFor="let doc of textDocumentList">
                 <div class="doc-item">
                     <div mat-line>
-                        {{doc?.title}}
-                        <button mat-icon-button color="accent" aria-label="Example icon-button with a heart icon">
-                            <mat-icon>mode_edit</mat-icon>
+                        <button mat-button color="accent" (click)="openDoc(doc)" style="width: 100%;text-align: start;">
+                            <mat-icon>description</mat-icon>
+                                <span style="margin-left: 20px;">{{doc?.title}}</span>
+                            <span mat-line style="font-size: 12px;font-style: italic;margin-left: 12px;">Updated at {{doc.updatedAt |
+                                date}}</span>
                         </button>
                     </div>
-                    <div mat-line style="font-size: 12px;font-style: italic;margin-top: -5px;">Updated at {{doc.updatedAt
-                        | date}}</div>
                 </div>
             </mat-list-item>
         </div>
         <div>
             <div>
-                <button mat-mini-fab color="accent" class="add-doc">
+                <button mat-mini-fab color="accent" class="add-doc" (click)="createDoc()">
                     <mat-icon>add</mat-icon>
                 </button>
             </div>
@@ -31,17 +37,13 @@
             <div *ngIf="isSaving" style="opacity: 0.2;">
                 <mat-spinner color="accent" [diameter]="30"></mat-spinner>
             </div>
-            <div *ngIf="isSaved" style="opacity: 0.3;">
-                Saved {{this.elapsedTime}} ago
+            <div *ngIf="!isSaving" style="opacity: 0.1;">
+                Last saved: {{this.currentTextDocument?.updatedAt}}
             </div>
         </div>
-        <app-text-editor
-            [currentText]="currentText"
-            [currentTitle]="currentTitle"
-            [currentTextDocument]="currentTextDocument" 
-            (textChange)="textChange($event)"
-            (titleChange)="titleChange($event)"
-            >
+        <app-text-editor [currentText]="currentText" [currentTitle]="currentTitle"
+            [currentTextDocument]="currentTextDocument" (textChange)="textChange($event)"
+            (titleChange)="titleChange($event)">
         </app-text-editor>
     </mat-sidenav-content>
 </mat-sidenav-container>
