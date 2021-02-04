@@ -5,33 +5,92 @@
     <mat-sidenav #sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')"
         (closed)="events.push('close!')">
         <div class="heading">
-            Workspace Documents
+            <div [ngSwitch]="activeView">
+                <div *ngSwitchCase="ActiveView.TextEditor">
+                    Text Docs
+                </div>
+                <div *ngSwitchCase="ActiveView.ScriptEditor">
+                    Screenplays
+                </div>
+            </div>
         </div>
         <div class="doc-list">
-            <mat-list-item *ngFor="let doc of textDocumentList">
-                <div class="doc-item">
-                    <div mat-line>
-                        <button mat-button color="accent" (click)="openDoc(doc)" style="width: 100%;text-align: start;" [disabled]="isSaving">
-                            <mat-icon>description</mat-icon>
-                                <span style="margin-left: 20px;">{{doc?.title}}</span>
-                            <span mat-line style="font-size: 12px;font-style: italic;margin-left: 12px;">Updated at {{doc.updatedAt |
-                                date}}</span>
-                        </button>
-                    </div>
+            <div [ngSwitch]="activeView">
+                <div *ngSwitchCase="ActiveView.TextEditor">
+                    <mat-list-item *ngFor="let doc of textDocumentList">
+                        <div class="doc-item">
+                            <div mat-line>
+                                <button mat-button color="accent" (click)="openDoc(doc)"
+                                    style="width: 85%;text-align: start;" [disabled]="isSaving">
+                                    <mat-icon>description</mat-icon>
+                                    <span style="margin-left: 20px;" [ngClass]="{'selection': currentTextDocument?.id === doc?.id}">{{doc?.title}}</span>
+                                    <span mat-line style="font-size: 12px;font-style: italic;margin-left: 12px;">Saved: {{doc.updatedAt | date}}</span>
+                                </button>
+                                <button mat-icon-button style="color: gray;" (click)="delDoc(doc)">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </mat-list-item>
                 </div>
-            </mat-list-item>
+                <div *ngSwitchCase="ActiveView.ScriptEditor">
+                    <mat-list-item *ngFor="let doc of scriptDocumentList">
+                        <div class="doc-item">
+                            <div mat-line>
+                                <button mat-button color="accent" (click)="openScr(doc)"
+                                    style="width: 85%;text-align: start;" [disabled]="isSaving">
+                                    <mat-icon>description</mat-icon>
+                                    <span style="margin-left: 20px;" [ngClass]="{'selection': currentScriptDocument?.id === doc?.id}">{{doc?.title}}</span>
+                                    <span mat-line style="font-size: 12px;font-style: italic;margin-left: 12px;">Saved: {{doc.updatedAt |
+                                        date}}</span>
+                                </button>
+                                <button mat-icon-button style="color: gray;" (click)="delScr(doc)">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </mat-list-item>
+                </div>
+            </div>
         </div>
         <div>
             <div>
                 <span>
-                    <button mat-mini-fab color="accent" class="add-doc" (click)="createDoc()" [disabled]="isSaving" matTooltip="Create New Document">
-                        <mat-icon>add</mat-icon>
-                    </button>
+                    <div>
+                        <div [ngSwitch]="activeView">
+                            <div *ngSwitchCase="ActiveView.TextEditor">
+                                <button mat-mini-fab color="accent" class="add-doc" (click)="createDoc()" [disabled]="isSaving"
+                                matTooltip="Create New Document">
+                                <mat-icon>add</mat-icon>
+                            </button>
+                            </div>
+                            <div *ngSwitchCase="ActiveView.ScriptEditor">
+                                <button mat-mini-fab color="accent" class="add-doc" (click)="createScript()" [disabled]="isSaving"
+                                matTooltip="Create New Document">
+                                <mat-icon>add</mat-icon>
+                            </button>
+                            </div>
+                        </div>
+                    </div>
+
                 </span>
                 <span>
-                    <button mat-mini-fab color="accent" class="switch-editor" (click)="createDoc()" [disabled]="isSaving" matTooltip="Switch To Screenwriter">
-                        <mat-icon>wysiwyg</mat-icon>
-                    </button>
+                    <div >
+                        <div [ngSwitch]="activeView">
+                            <div *ngSwitchCase="ActiveView.TextEditor">
+                                <button mat-mini-fab color="accent" class="switch-editor" (click)="toggleEditor()"
+                                [disabled]="isSaving" matTooltip="Switch To Screenwriter">
+                                <mat-icon>wysiwyg</mat-icon>
+                            </button>
+                            </div>
+                            <div *ngSwitchCase="ActiveView.ScriptEditor">
+                                <button mat-mini-fab color="accent" class="switch-editor" (click)="toggleEditor()"
+                                [disabled]="isSaving" matTooltip="Switch To Text Editor">
+                                <mat-icon>wysiwyg</mat-icon>
+                            </button>
+                            </div>
+                        </div>
+                    </div>
                 </span>
             </div>
         </div>
@@ -42,15 +101,41 @@
         </button>
         <div class="status-area">
             <div *ngIf="isSaving">
-                <mat-spinner color="accent" [diameter]="30"></mat-spinner>
+                <!-- <mat-spinner color="accent" [diameter]="20"></mat-spinner> -->
+                <mat-progress-bar color="accent" mode="indeterminate"></mat-progress-bar>
+            
             </div>
             <div *ngIf="!isSaving">
-                Last saved: {{this.currentTextDocument?.updatedAt}}
+                <div [ngSwitch]="activeView">
+                    <div *ngSwitchCase="ActiveView.TextEditor">
+                        Last saved: {{this.currentTextDocument?.updatedAt}}
+                    </div>
+                    <div *ngSwitchCase="ActiveView.ScriptEditor">
+                        Last saved: {{this.currentScriptDocument?.updatedAt}}
+                    </div>
+                </div>
             </div>
         </div>
-        <app-text-editor [currentText]="currentText" [currentTitle]="currentTitle"
-            [currentTextDocument]="currentTextDocument" (textChange)="textChange($event)"
-            (titleChange)="titleChange($event)">
-        </app-text-editor>
+        <div [ngSwitch]="activeView">
+            <div *ngSwitchCase="ActiveView.TextEditor">
+                <app-text-editor [currentText]="currentText" [currentTitle]="currentTitle"
+                    [currentTextDocument]="currentTextDocument" (textChange)="textChange($event)"
+                    (titleChange)="titleChange($event)">
+                </app-text-editor>
+            </div>
+            <div *ngSwitchCase="ActiveView.ScriptEditor">
+                <app-script-editor 
+                    [currentScriptText]="currentScriptText"
+                    [currentScriptTitle]="currentScriptTitle"
+                    [currentScriptDocument]="currentScriptDocument"
+                    (scriptChange)="scriptChange($event)"
+                    (saveScript)="saveScript($event)"
+                    (titleChange)="scrTitleChange($event)">
+                </app-script-editor>
+            </div>
+        </div>
+        <div style="position: absolute;left: 50%;top: 50%;opacity: 0.5;" *ngIf="isOpening">
+            <mat-spinner color="accent" [diameter]="50"></mat-spinner>
+        </div>
     </mat-sidenav-content>
 </mat-sidenav-container>

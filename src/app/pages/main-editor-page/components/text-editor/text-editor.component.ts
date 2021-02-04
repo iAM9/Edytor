@@ -10,35 +10,43 @@ import { TitleDialogComponent } from '../title-dialog/title-dialog.component';
   styleUrls: ['./text-editor.component.css']
 })
 
-
-
 export class TextEditorComponent {
 
-  _currentString: TextDocument;
-
+  /** The current text document */
   @Input() currentTextDocument: TextDocument;
+
+  /** The title of the current text doc */
   @Input() currentTitle: string;
+
+  /** The text contents of the current text doc */
   @Input() currentText: string;
 
+  /** Emit event whenever text contents are updated */
   @Output() textChange = new EventEmitter<string>();
 
+  /** Emit event whenever title is updated */
   @Output() titleChange = new EventEmitter<string>();
 
-  constructor(private _dialog: MatDialog) {  }
+  /**
+   * Constructor
+   * @param _dialog 
+   */
+  constructor(private _dialog: MatDialog) { }
 
   /**
    * Event handler for detecting changes in the text
    * @param text 
    */
   textChangeEvent(text: any) {
-    console.log('Text: ', text);
     // this.textChange.emit(text.data);
-    console.log('Textarea: ', (document.getElementById("editor")).innerHTML);
     this.textChange.emit(document.getElementById("editor").innerHTML);
   }
 
+  /**
+   * Edit title of the document
+   * @param docTitle The current title of the current doc
+   */
   editName(docTitle) {
-    console.log('DocTitle: ', docTitle);
     const dialogRef = this._dialog.open(TitleDialogComponent, {
       data: {
         title: docTitle
@@ -46,10 +54,9 @@ export class TextEditorComponent {
     });
 
     dialogRef.afterClosed().subscribe(newTitle => {
-      if(!newTitle) {
+      if (!newTitle) {
         return;
       }
-      console.log('newTitle: ', newTitle);
       this.titleChange.emit(newTitle);
     })
   }
@@ -60,40 +67,39 @@ export class TextEditorComponent {
    * @param value The value for the command
    */
   format(command, value?) {
-    console.log('command: ', command);
-    console.log('value: ', value);
+    // console.log('command: ', command);
+    // console.log('value: ', value);
     document.execCommand(command, false, value);
   }
 
+  /**
+   * Handle font style selection
+   * @param e New font selection
+   */
   selectFont(e) {
-    console.log('Select: ', e);
     const selection = (<HTMLInputElement>document.getElementById("font-style-select")).value;
     this.format('fontname', selection);
   }
 
+  /**
+ * Handle font size selection
+ * @param e New font size selection
+ */
   selectSize(e) {
-    console.log('Select: ', e);
     const selection = (<HTMLInputElement>document.getElementById("font-size-select")).value;
     this.format('fontsize', selection);
   }
 
+  /**
+   * Handle creating a hyperlink
+   * @param event 
+   */
   createLink(event) {
     let link = window.prompt('Target Url');
-    // const dialogRef = this._dialog.open(HyperlinkDialogComponent, {
-    //   width: '250px',
-    //   height: '280px',
-    //   data: {
-    //     string: window.getSelection().toString()
-    //   }
-    // });
-    // // console.log('Event: ', event);
-    // dialogRef.afterClosed().subscribe(link => {
-      // console.log('LINK: ', link);
-      if (!link.startsWith('http')) {
-        link = 'https://'+ link;
-      }
+    if (!link.startsWith('http')) {
+      link = 'https://' + link;
+    }
     this.format('createlink', link)
-    // })
   }
 
   /**
@@ -101,13 +107,13 @@ export class TextEditorComponent {
    * @param e The keydown event
    */
   textTab(e) {
-      if(e.key === 'Tab') {
-        // e.preventDefault();
-        document.execCommand('insertHTML', false, '&#009');
-        //prevent focusing on next element
-        e.preventDefault() 
-      }
-    
+    if (e.key === 'Tab') {
+      // e.preventDefault();
+      document.execCommand('insertHTML', false, '&#009');
+      //prevent focusing on next element
+      e.preventDefault()
+    }
+
     // e.preventDefault();
 
     // const editor = document.querySelector('textarea');

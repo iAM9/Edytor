@@ -4,7 +4,8 @@
   }
 
 .contents{
-    overflow: unset;
+    /* overflow: unset; */
+    background-color: #2d2d2b;
 }
 
 .sidenav-toggle {
@@ -27,8 +28,9 @@
 
 .status-area {
   position: absolute;
+  width: 100%;
   bottom: 5px;
-  left: 10px;
+  /* left: 10px; */
   opacity: 0.1;
   font-size: small;
   font-family: 'DM Mono', monospace;
@@ -80,4 +82,9 @@
   font-size: x-large;
   padding-top: 30px;
   font-family: 'DM Mono', monospace;
+}
+
+.selection {
+  font-weight: 900;
+  font-style: italic;
 }

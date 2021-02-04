@@ -4,16 +4,14 @@
 <div class="editor">
     <div class="toolbar">
         <div>
-            <button mat-button color="accent" 
-                style="width: 100%;
+            <button mat-button color="accent" style="width: 100%;
                 text-align: start;
                 padding-left: 10px;
-                padding-right: 0px;"
-                (click)="editName(this.currentTitle)">
+                padding-right: 0px;" (click)="editName(this.currentTitle)">
                 <mat-icon>edit</mat-icon>
-                    <span style="margin-left: 10px;margin-right: 10px;">
-                        {{this.currentTitle}}
-                    </span>
+                <span style="margin-left: 10px;margin-right: 10px;">
+                    {{this.currentTitle}}
+                </span>
             </button>
         </div>
         <div>
@@ -42,7 +40,7 @@
         </div>
         <div>
             <div style="margin-left: 1px;margin-bottom: 5px;">
-                <button mat-icon-button [matMenuTriggerFor]="menuFont" >
+                <button mat-icon-button [matMenuTriggerFor]="menuFont">
                     <mat-icon>format_shapes</mat-icon>
                 </button>
                 <mat-menu #menuFont="matMenu">
@@ -56,7 +54,7 @@
                         <span style="font-family: 'Courier New', Courier, monospace">Courier New</span>
                     </button>
                 </mat-menu>
-                <button mat-icon-button [matMenuTriggerFor]="menuFontColor" >
+                <button mat-icon-button [matMenuTriggerFor]="menuFontColor">
                     <mat-icon style="color: darkorange;">format_color_text</mat-icon>
                 </button>
                 <mat-menu #menuFontColor="matMenu">
@@ -76,6 +74,7 @@
             </div>
         </div>
     </div>
-    <div id="editor" contenteditable="true" (input)="textChangeEvent($event)" (keydown)="textTab($event)" [innerHTML]="this.currentText | safe:'html'">
+    <div id="editor" contenteditable="true" (input)="textChangeEvent($event)" (keydown)="textTab($event)"
+        [innerHTML]="this.currentText | safe:'html'">
     </div>
 </div>

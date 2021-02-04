@@ -1,0 +1,50 @@
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300&display=swap" rel="stylesheet">
+
+<div class="editor">
+    <div class="toolbar">
+        <div>
+            <button mat-button color="accent" style="width: 100%;
+                text-align: start;
+                padding-left: 10px;
+                padding-right: 0px;" (click)="editName(this.currentScriptTitle)">
+                <mat-icon>edit</mat-icon>
+                <span style="margin-left: 10px;margin-right: 10px;">
+                    {{this.currentScriptTitle}}
+                </span>
+            </button>
+        </div>
+        <div>
+            <button mat-button color="accent" style="width: 100%;
+            text-align: start;
+            padding-left: 10px;
+            padding-right: 0px;" (click)="togglePreview()" matTooltip="Toggle Preview">
+                <mat-icon>preview</mat-icon>
+                <span style="margin-left: 10px;margin-right: 10px;">
+                    Toggle Preview
+                </span>
+            </button>
+        </div>
+        <div *ngIf="preview">
+            <button mat-button color="warn" style="width: 100%;
+            text-align: start;
+            padding-left: 10px;
+            padding-right: 0px;" (click)="printPdf()" matTooltip="Toggle Preview">
+                <mat-icon>picture_as_pdf</mat-icon>
+                <span style="margin-left: 10px;margin-right: 10px;">
+                    Print PDF
+                </span>
+            </button>
+        </div>
+        <div>
+            <div *ngIf="preview" style="margin-left: 10px;font-style: italic;">--PREVIEW--</div>
+        </div>
+    </div>
+    <div style="height: 100vh;" *ngIf="!preview">
+        <textarea id="editor3" (input)="textChangeEvent($event)" [(ngModel)]="this.currentScriptText"></textarea>
+    </div>
+
+    <app-script-previewer *ngIf="preview" [currentTextPreview]="currentScriptDocument.previewText">
+    </app-script-previewer>
+
+</div>

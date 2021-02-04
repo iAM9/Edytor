@@ -42,7 +42,6 @@
   scrollbar-color: #f6f5f043 #2d2d2b;
   scrollbar-width: thin;
   white-space: pre-wrap;
-  outline:none;
 }
 
 #editor2 {
@@ -51,7 +50,7 @@
   font-family: 'DM Mono', monospace;
   font-size: 20px;
   padding: 2cm;
-  /* margin: 1cm auto; */
+  margin: 1cm auto;
   box-sizing: border-box;
   resize: none;
   background-color: #2d2d2b;
@@ -65,22 +64,19 @@
   outline:none;
 }
 
-#editor3 {
+/* #editor3 {
   width: 21cm;
   height: 40%;
   font-family: 'DM Mono', monospace;
   font-size: 20px;
   padding-top: 2.5cm;
   padding-bottom: 2.5cm;
-  margin-top: 0cm;
-  /* padding-left: 4cm; */
-  /* padding-right: 2.5cm; */
-  /* margin: 1cm auto; */
+
   margin-left: auto;
   margin-right: auto;
   box-sizing: border-box;
   resize: none;
-  background-color: #303030;
+  background-color: #2d2d2b;
   color: #f6f5f0e0;
   line-height: 27px;
   border: #2d2d2b;
@@ -89,7 +85,7 @@
   scrollbar-width: thin;
   white-space: pre-wrap;
   outline:none;
-}
+} */
 
 #editor2:focus {
   border: rgb(143, 140, 140);
@@ -111,6 +107,7 @@ textarea {
     font-size: 20px;
     padding-left: 250px;
     padding-right: 250px;
+    padding-top: 2.5cm;
     box-sizing: border-box;
     resize: none;
     background-color: #2d2d2b;
