@@ -40,7 +40,7 @@
         </div>
         <div>
             <div style="margin-left: 1px;margin-bottom: 5px;">
-                <button mat-icon-button [matMenuTriggerFor]="menuFont">
+                <button mat-icon-button [matMenuTriggerFor]="menuFont" matTooltip="Font Style">
                     <mat-icon>format_shapes</mat-icon>
                 </button>
                 <mat-menu #menuFont="matMenu">
@@ -54,7 +54,7 @@
                         <span style="font-family: 'Courier New', Courier, monospace">Courier New</span>
                     </button>
                 </mat-menu>
-                <button mat-icon-button [matMenuTriggerFor]="menuFontColor">
+                <button mat-icon-button [matMenuTriggerFor]="menuFontColor" matTooltip="Font Colour">
                     <mat-icon style="color: darkorange;">format_color_text</mat-icon>
                 </button>
                 <mat-menu #menuFontColor="matMenu">
@@ -68,13 +68,29 @@
                         <div class="square" style="background-color: dodgerblue;"></div>
                     </button>
                 </mat-menu>
-                <button mat-icon-button (click)="createLink($event)">
-                    <mat-icon style="color: dodgerblue;">insert_link</mat-icon>
+                <button mat-icon-button [matMenuTriggerFor]="menuFontSize" matTooltip="Font Size">
+                    <mat-icon>format_size</mat-icon>
                 </button>
+                <mat-menu #menuFontSize="matMenu">
+                    <button mat-menu-item (click)="format('fontsize', '3')">
+                        <div style="font-size: medium;">Small</div>
+                    </button>
+                    <button mat-menu-item (click)="format('fontsize', '4')">
+                        <div style="font-size: large;">Medium</div>
+                    </button>
+                    <button mat-menu-item (click)="format('fontsize', '5')">
+                        <div style="font-size: x-large;">Large</div>
+                    </button>
+                </mat-menu>
             </div>
         </div>
+        <div>
+            <button mat-icon-button (click)="createLink($event)">
+                <mat-icon style="color: dodgerblue;">insert_link</mat-icon>
+            </button>
+        </div>
     </div>
-    <div id="editor" contenteditable="true" (input)="textChangeEvent($event)" (keydown)="textTab($event)"
+    <div id="editor" contenteditable="true" (input)="textChangeEvent($event)" (keydown)="textTab($event)"  tabindex="0"
         [innerHTML]="this.currentText | safe:'html'">
     </div>
 </div>

@@ -10,7 +10,7 @@ import { TitleDialogComponent } from '../title-dialog/title-dialog.component';
   styleUrls: ['./text-editor.component.css']
 })
 
-export class TextEditorComponent {
+export class TextEditorComponent implements OnInit {
 
   /** The current text document */
   @Input() currentTextDocument: TextDocument;
@@ -31,7 +31,13 @@ export class TextEditorComponent {
    * Constructor
    * @param _dialog 
    */
-  constructor(private _dialog: MatDialog) { }
+  constructor(private _dialog: MatDialog) {
+  }
+
+  ngOnInit() {
+    // console.log('FOCUSING');
+    // document.getElementById("editor").focus();
+  }
 
   /**
    * Event handler for detecting changes in the text

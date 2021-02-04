@@ -56,6 +56,8 @@ export class MainEditorPageComponent {
       <br>
       <div style="color:darkcyan;text-align:end">A simple to use rich-text editor</div>
       <br>
+      <div style="color:darkcyan;text-align:center">Just click here and start typing!</div>
+      <br>
       <div style="text-align:left"><span style="color:dodgerblue">For optimal experience,</span>you can go fullscreen by pressing the F11 key on your keyboard</div>
     </div>
     `;
