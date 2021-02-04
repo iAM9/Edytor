@@ -1,0 +1,40 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  /* Create two equal columns that floats next to each other */
+  .column {
+    float: left;
+    width: 50%;
+    /* padding: 10px; */
+    height: 100%; /* Should be removed. Only for demonstration */
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .row {
+      height: 100%;
+      font-family: 'DM Mono', monospace;
+  }
+
+  .contents {
+    text-align: center;
+    vertical-align: sub;
+    padding-top: 40vh;
+  }
+
+  a {
+    color: lightgrey;
+  }
+
+  img {
+      filter: blur(2px);
+      height: inherit;
+      width: 100%;
+      position: fixed;
+  }

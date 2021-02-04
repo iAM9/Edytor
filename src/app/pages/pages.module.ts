@@ -15,6 +15,7 @@ import { SafePipe } from '../pipes/safe.pipe';
 import { ScriptPreviewerComponent } from './main-editor-page/components/script-previewer/script-previewer.component';
 import { ScriptEditorComponent } from './main-editor-page/components/script-editor/script-editor.component';
 import { ConfirmDialogComponent } from './main-editor-page/components/confirm-dialog/confirm-dialog.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { ConfirmDialogComponent } from './main-editor-page/components/confirm-di
     SafePipe,
     ScriptPreviewerComponent,
     ScriptEditorComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    LandingPageComponent
   ],
   entryComponents: [
     TitleDialogComponent,
